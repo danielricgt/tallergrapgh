@@ -1,5 +1,5 @@
 // se crea una consulta para crear y definir un schema
-import {GREETING} from './Queries/Greeting'
+import {GREETING} from '../Queries/Greeting'
 
 
 
