@@ -11,4 +11,5 @@ export const UserType = new GraphQLObjectType({
     }
 
 
-})
+}); 
+
