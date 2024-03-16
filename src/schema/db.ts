@@ -1,6 +1,9 @@
 import { createConnection } from "typeorm"
 import {Users} from '../Entities/Users'
 
+
+console.log(process.env.HELLO)
+
 export const connectDB =  async () => {
 
     await createConnection({
