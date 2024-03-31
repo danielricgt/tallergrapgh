@@ -24,7 +24,7 @@ export const CREATE_USER = {
 
     const encryptPassword = await bcrypt.hash(password, 10);
     const result = await Users.insert({
-      name: name,
+      idUsers: name,
       username: username,
       password: encryptPassword,
     });
@@ -49,7 +49,7 @@ export const DELETE_USER = {
 export const UPDATE_USER = {
   type: MessageType,
   args: {
-    id: { type: GraphQLID },
+    idUsers: { type: GraphQLID },
     input: {
       type: new GraphQLInputObjectType({
         name: "UserImput",
@@ -62,8 +62,8 @@ export const UPDATE_USER = {
       }),
     },
   },
-  async resolve(_: any, { id, input }: any) {
-    const userFound = await Users.findOne({ where: { id } });
+  async resolve(_: any, { idUsers, input }: any) {
+    const userFound = await Users.findOne({ where: { idUsers } });
     if (!userFound)
       return {
         success: false,
@@ -82,8 +82,8 @@ export const UPDATE_USER = {
     const newPasswordHash = await bcrypt.hash(input.newPassword, 10);
 
     const response = await Users.update(
-      { id },
-      { username: input.username, name: input.name, password: newPasswordHash }
+      { idUsers },
+      { username: input.username, idUsers: input.name, password: newPasswordHash }
     );
     console.log(response);
 
